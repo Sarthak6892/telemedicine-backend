@@ -36,7 +36,7 @@ public class SymptomService {
 
         SeverityLevel sevirityLevel = severityService.evaluateSeverity(symptoms);
 
-        String specialization = specialistMappingService.mapToSpecialization(aiResult.getCondition());
+        String specialization = specialistMappingService.mapToSpecialization(aiResult.getSeverity());
 
         List<Doctors> recommendation = doctorService.getDoctorsBySpecialization(specialization);
 

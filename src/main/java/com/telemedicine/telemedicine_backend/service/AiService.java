@@ -49,7 +49,10 @@ Analyze the symptoms and respond ONLY in JSON format.
 
 Rules:
 - condition should be the most likely illness
-- severity must be MILD, MODERATE, or SEVERE
+- severity must be from the given list["fever","flu","cold","cough","fatigue","infection","vomit",
+"diarrhea","weakness","headache","tooth","teeth","gum","cavity","mouth sore","jaw pain","dental",
+"rash","acne","itch","skin","eczema","psoriasis","blisters","hives","period","menstrual","pregnancy"
+"ovarian","vaginal","uterus","pcos"]
 - advice should be short (1–2 sentences)
 
 Symptoms: """ + symptom);
@@ -73,18 +76,19 @@ Symptoms: """ + symptom);
             JsonNode extractedTextroot = objectMapper.readTree(extractedText);
             String condition = extractedTextroot.path("condition").asText();
             String advice = extractedTextroot.path("advice").asText();
+            String severity = extractedTextroot.path("severity").asText();
 
             System.out.println("Extracted Text: " + extractedText);
             return new AiAnalysisResponseDTO(
                     condition,
-                    "UNKNOWN",
+                    severity,
                     advice
             );
         } catch (RestClientException e) {
             System.out.println("Groq API call failed: " + e.getMessage());
         }
-            return new AiAnalysisResponseDTO("Unknown Condition",
-                    "Unknown Severity",
-                        "Unable to analyze symptoms at the moment. Please consult a doctor.");
+        return new AiAnalysisResponseDTO("Unknown Condition",
+                "Unknown Severity",
+                "Unable to analyze symptoms at the moment. Please consult a doctor.");
     }
 }

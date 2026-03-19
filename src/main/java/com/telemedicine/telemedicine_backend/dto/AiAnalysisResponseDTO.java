@@ -7,7 +7,7 @@ public class AiAnalysisResponseDTO {
 
     public AiAnalysisResponseDTO(){}
 
-    public AiAnalysisResponseDTO(String condition, String severity, String advice){
+    public AiAnalysisResponseDTO(String condition, String severity, String advice) {
         this.condition = condition;
         this.severity = severity;
         this.advice = advice;
