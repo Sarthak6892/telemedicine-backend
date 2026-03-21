@@ -94,7 +94,6 @@
 	</dependencies>
 
 	<build>
-        <finalName>telemedicine-backend</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
